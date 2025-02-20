@@ -37,6 +37,20 @@ namespace PowerpointExporter
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ExportToImages();
+            }
+            catch 
+            {
+                //retry
+                ExportToImages();
+                throw;
+            }
+        }
+
+        private void ExportToImages() 
+        {
             ApplicationClass pptApplication = new();
             Presentation pptPresentation = pptApplication.Presentations.Open(filePath, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
 
